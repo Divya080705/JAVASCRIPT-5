@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Letters Alphabetically</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6f2ff;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .output {
+      margin-top: 10px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      font-family: monospace;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Alphabetical Order</h2>
+  <input type="text" id="textInput" placeholder="Enter a string">
+  <button onclick="sortAlphabetically()">Sort Letters</button>
+  <div id="result" class="output"></div>
+</div>
+
+<script>
+  function sortAlphabetically() {
+    const str = document.getElementById("textInput").value;
+    if (str.trim() === "") {
+      document.getElementById("result").textContent = "Please enter a string.";
+      return;
+    }
+    const sorted = str.split('').sort().join('');
+    document.getElementById("result").textContent = "Sorted: " + sorted;
+  }
+</script>
+
+</body>
+</html>

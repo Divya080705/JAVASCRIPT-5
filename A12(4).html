@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Form Validation</h3>
+  <form onsubmit="return validateForm()">
+    First Name: <input type="text" id="fname"><span class="error" id="ferr"></span><br><br>
+    Last Name: <input type="text" id="lname"><span class="error" id="lerr"></span><br><br>
+    Email: <input type="text" id="email"><span class="error" id="eerr"></span><br><br>
+    Phone #: <input type="text" id="phone"><span class="error" id="perr"></span><br><br>
+    Address: <input type="text" id="address"><span class="error" id="aerr"></span><br><br>
+    City: <input type="text" id="city"><span class="error" id="cerr"></span><br><br>
+
+    State: 
+    <select id="state">
+      <option value="">Select</option>
+      <option value="AP">AP</option>
+      <option value="TS">TS</option>
+    </select>
+    <span class="error" id="serr"></span><br><br>
+
+    Hosting: 
+    <input type="radio" name="host" value="Yes"> Yes
+    <input type="radio" name="host" value="No"> No
+    <span class="error" id="herr"></span><br><br>
+
+    Project Description: <br>
+    <textarea id="desc"></textarea><span class="error" id="derr"></span><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      // Clear all errors
+      document.querySelectorAll(".error").forEach(el => el.innerText = "");
+
+      if (document.getElementById("fname").value === "") {
+        document.getElementById("ferr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("lname").value === "") {
+        document.getElementById("lerr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("email").value === "") {
+        document.getElementById("eerr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("phone").value === "") {
+        document.getElementById("perr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("address").value === "") {
+        document.getElementById("aerr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("city").value === "") {
+        document.getElementById("cerr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("state").value === "") {
+        document.getElementById("serr").innerText = " Required";
+        valid = false;
+      }
+      if (!document.querySelector('input[name="host"]:checked')) {
+        document.getElementById("herr").innerText = " Required";
+        valid = false;
+      }
+      if (document.getElementById("desc").value === "") {
+        document.getElementById("derr").innerText = " Required";
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+</body>
+</html>

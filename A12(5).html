@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Generator</title>
+  <style>
+    body {
+      background: #2c2323;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .generator-box {
+      background-color: #101918;
+      padding: 25px;
+      border-radius: 15px;
+      color: white;
+      text-align: center;
+      width: 350px;
+    }
+
+    .generator-box h2 {
+      background: #eee;
+      color: black;
+      padding: 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #eee;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .controls {
+      margin-top: 15px;
+    }
+
+    .controls label {
+      margin: 0 10px;
+    }
+
+    .slider {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="generator-box">
+    <h2>Password - Generator</h2>
+    <input type="text" id="password" readonly>
+    <button onclick="copyPassword()">Copy</button>
+
+    <div class="slider">
+      <input type="range" min="6" max="30" value="23" id="length" oninput="update()">
+      <p>Length: <span id="lenValue">23</span></p>
+    </div>
+
+    <div class="controls">
+      <label><input type="checkbox" id="includeChars" checked> Characters</label>
+      <label><input type="checkbox" id="includeNums" checked> Numbers</label>
+    </div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const lengthSlider = document.getElementById("length");
+    const lenValue = document.getElementById("lenValue");
+    const includeChars = document.getElementById("includeChars");
+    const includeNums = document.getElementById("includeNums");
+
+    function generatePassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+=-;:',.<>?/[]{}|";
+      const nums = "0123456789";
+
+      let pool = "";
+      if (includeChars.checked) pool += chars;
+      if (includeNums.checked) pool += nums;
+
+      let length = +lengthSlider.value;
+      let password = "";
+
+      for (let i = 0; i < length; i++) {
+        password += pool.charAt(Math.floor(Math.random() * pool.length));
+      }
+
+      passwordInput.value = password;
+    }
+
+    function update() {
+      lenValue.textContent = lengthSlider.value;
+      generatePassword();
+    }
+
+    function copyPassword() {
+      navigator.clipboard.writeText(passwordInput.value)
+        .then(() => alert("Password copied!"));
+    }
+
+    
+    window.onload = generatePassword;
+  </script>
+</body>
+</html>

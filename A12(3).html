@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiplication and Division</title>
+</head>
+<body>
+  <h2>JavaScript Basic : Exercise-3</h2>
+  <form>
+    <label>1st Number: <input type="text" id="firstNumber" /></label><br><br>
+    <label>2nd Number: <input type="text" id="secondNumber" /></label><br><br>
+    <input type="button" onClick="multiplyBy()" value="Multiply" />
+    <input type="button" onClick="divideBy()" value="Divide" />
+  </form>
+  <p>The Result is: <span id="result"></span></p>
+
+  <script>
+    function multiplyBy() {
+      var num1 = parseFloat(document.getElementById("firstNumber").value);
+      var num2 = parseFloat(document.getElementById("secondNumber").value);
+      document.getElementById("result").innerText = num1 * num2;
+    }
+
+    function divideBy() {
+      var num1 = parseFloat(document.getElementById("firstNumber").value);
+      var num2 = parseFloat(document.getElementById("secondNumber").value);
+      if (num2 !== 0) {
+        document.getElementById("result").innerText = num1 / num2;
+      } else {
+        document.getElementById("result").innerText = "Cannot divide by zero!";
+      }
+    }
+  </script>
+</body>
+</html>
